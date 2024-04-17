@@ -1,6 +1,12 @@
-<h2>Products</h2>
+<h2>Productos</h2>
 
-
+<div *ngFor="let producto of productos">
+    <h3>
+        <a [title]=" 'Detalle de ' + producto.nombre ">
+            {{producto.nombre}}
+        </a>
+    </h3>
+</div>
 <!-- 
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
