@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { CarritoService } from '../carrito.service';
 
 @Component({
@@ -10,6 +11,20 @@ export class CarritoComponent {
 
   items = this.carritoService.getItems();
 
-  constructor (private carritoService: CarritoService) {}
+  formularioEnvio = this.formBuilder.group({
+    nombre: '',
+    direccion: ''
+  })
+
+  constructor (
+    private carritoService: CarritoService,
+    private formBuilder: FormBuilder
+    ) {}
+
+  onSubmit(): void {
+    this.items = this.carritoService.limpiarCarrito();
+    console.warn("Los datos han sido enviados", this.formularioEnvio.value);
+    this.formularioEnvio.reset();
+  }
 
 }
